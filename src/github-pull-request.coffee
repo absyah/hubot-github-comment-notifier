@@ -29,7 +29,7 @@ module.exports = (robot) ->
       mention_team: query["mention-team"]
     parts = parseBody req.body
     message = lib.buildMessage parts, opts
-    robot.send {room: query.room}, message if message
+    robot.messageRoom query.room, message if message
     res.end ""
 
 parseBody = (data) ->
