@@ -18,7 +18,7 @@ querystring = require 'querystring'
 lib = require '../lib'
 
 PATH = "/hubot/github-pull-request"
-
+TEAM = process.env.HUBOT_TEAM_PATH
 
 module.exports = (robot) ->
   robot.router.post PATH, (req, res) ->
@@ -36,12 +36,22 @@ module.exports = (robot) ->
       console.log(mentions)
       for mention in mentions
         console.log(mention)
-        slackUser = lib.convertToSlackUser(mention)
+        slackUser = convertToSlackUser(mention)
         console.log("send message to "+ slackUser)
         robot.messageRoom slackUser, message
         res.end ""
     else
       res.end ""
+
+convertToSlackUser = (githubUser) ->
+  slackUser = TEAM[githubUser]
+  console.log(TEAM)
+  console.log('github user')
+  console.log(githubUser)
+  console.log('slack user')
+  console.log(TEAM[githubUser])
+  console.log(slackUser)
+  slackUser
 
 parseBody = (data) ->
   parts = null
