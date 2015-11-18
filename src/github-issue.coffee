@@ -30,7 +30,8 @@ module.exports = (robot) ->
     issueBody = req.body.issue.body
     mentions = lib.extractMentions issueBody
     for mention in mentions
-      robot.messageRoom mention, message if message
+      slackUser = lib.convertToSlackUser(mention)
+      robot.messageRoom slackUser, message if message
     res.end ""
 
 parseBody = (data) ->
