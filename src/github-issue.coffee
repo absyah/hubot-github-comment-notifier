@@ -29,6 +29,7 @@ module.exports = (robot) ->
     message = lib.buildMessage parts, opts
     console.log("message:" + message)
     if message
+      console.log(req.body)
       issueBody = req.body.issue.body if req.body.issue
       mentions = lib.extractMentions issueBody
       console.log(mentions)
