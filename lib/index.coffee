@@ -9,7 +9,10 @@ exports.extractMentions = (body) ->
   mentions
 
 exports.convertToSlackUser = (githubUser) ->
+  console.log(team)
+  console.log('github user')
   console.log(githubUser)
+  console.log('slack user')
   console.log(team[githubUser])
   slackUser = team[githubUser]
   slackUser
