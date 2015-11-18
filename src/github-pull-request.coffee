@@ -34,6 +34,7 @@ module.exports = (robot) ->
       mentions = lib.extractMentions pullRequestBody
       for mention in mentions
         slackUser = lib.convertToSlackUser(mention)
+        console.log("send message to "+ slackUser)
         robot.messageRoom slackUser, message
     res.end ""
 
