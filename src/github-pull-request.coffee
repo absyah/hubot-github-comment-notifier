@@ -36,7 +36,9 @@ module.exports = (robot) ->
         slackUser = lib.convertToSlackUser(mention)
         console.log("send message to "+ slackUser)
         robot.messageRoom slackUser, message
-    res.end ""
+        res.end ""
+    else
+      res.end ""
 
 parseBody = (data) ->
   parts = null
