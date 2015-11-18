@@ -29,11 +29,15 @@ module.exports = (robot) ->
     message = lib.buildMessage parts, opts
     console.log("message:" + message)
     if message
-      console.log(req.body)
-      issueBody = req.body.issue.body if req.body.issue
-      mentions = lib.extractMentions issueBody
+      bodyMessage = req.body.comment.body if req.body.comment
+      bodyMessage = req.body.issue.body if !bodyMessage
+      mentions = lib.extractMentions bodyMessage
+      console.log('bodyMessage')
+      console.log(bodyMessage)
+      console.log("extracted mentions")
       console.log(mentions)
       for mention in mentions
+        console.log("enter loop")
         console.log(mention)
         slackUser = lib.convertToSlackUser(mention)
         console.log("send message to "+ slackUser)
