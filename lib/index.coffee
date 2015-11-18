@@ -8,16 +8,6 @@ exports.extractMentions = (body) ->
     mentions = _.uniq(mention.trim() for mention in match)
   mentions
 
-exports.convertToSlackUser = (githubUser) ->
-  slackUser = team[githubUser]
-  console.log(team)
-  console.log('github user')
-  console.log(githubUser)
-  console.log('slack user')
-  console.log(team[githubUser])
-  console.log(slackUser)
-  slackUser
-
 exports.buildMessage = (parts, opts) ->
   return null unless parts
   mentions = convert parts.mentions
