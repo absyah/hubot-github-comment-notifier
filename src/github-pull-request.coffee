@@ -29,10 +29,13 @@ module.exports = (robot) ->
       mention_team: query["mention-team"]
     parts = parseBody req.body
     message = lib.buildMessage parts, opts
+    console.log("message:" + message)
     if message
       pullRequestBody = req.body.pull_request.body
       mentions = lib.extractMentions pullRequestBody
+      console.log(mentions)
       for mention in mentions
+        console.log(mention)
         slackUser = lib.convertToSlackUser(mention)
         console.log("send message to "+ slackUser)
         robot.messageRoom slackUser, message
