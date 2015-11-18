@@ -9,7 +9,10 @@ exports.extractMentions = (body) ->
   mentions
 
 exports.convertToSlackUser = (githubUser) ->
-  team[githubUser]
+  console.log(githubUser)
+  console.log(team[githubUser])
+  slackUser = team[githubUser]
+  slackUser
 
 exports.buildMessage = (parts, opts) ->
   return null unless parts
