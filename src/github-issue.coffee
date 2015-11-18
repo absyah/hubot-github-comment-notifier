@@ -27,11 +27,12 @@ module.exports = (robot) ->
       only_mentioned: query["only-mentioned"]
     parts = parseBody req.body
     message = lib.buildMessage parts, opts
-    issueBody = req.body.issue.body
-    mentions = lib.extractMentions issueBody
-    for mention in mentions
-      slackUser = lib.convertToSlackUser(mention)
-      robot.messageRoom slackUser, message if message
+    if message
+      issueBody = req.body.issue.body if req.body.issue
+      mentions = lib.extractMentions issueBody
+      for mention in mentions
+        slackUser = lib.convertToSlackUser(mention)
+        robot.messageRoom slackUser, message
     res.end ""
 
 parseBody = (data) ->
