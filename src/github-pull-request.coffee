@@ -29,8 +29,10 @@ module.exports = (robot) ->
       mention_team: query["mention-team"]
     parts = parseBody req.body
     message = lib.buildMessage parts, opts
-    console.log(query)
-    robot.messageRoom query.room, message if message
+    pullRequestBody = req.body.pull_request.body
+    mentions = lib.extractMentions pullRequestBody
+    for mention in mentions
+      robot.messageRoom mention, message if message
     res.end ""
 
 parseBody = (data) ->
